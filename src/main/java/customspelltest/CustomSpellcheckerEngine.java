@@ -27,17 +27,21 @@ public class CustomSpellcheckerEngine implements SpellcheckingEngine {
       checked.forEach(problemInfo ->
         {
           String word = problemInfo.getWord();
+          List<String> suggestions = Arrays.asList(
+              word + "a", 
+              word + "b", 
+              word + "c"
+          ); 
+          if (word.equals("From")) {
+            suggestions = new ArrayList<>();
+          }
           checkedExtended.add(new SpellCheckingProblemInfo(
               problemInfo.getStartOffset(), 
               problemInfo.getEndOffset(), 
               problemInfo.getErrorCode(), 
               problemInfo.getLanguageIsoName(), 
               word,
-              Arrays.asList(
-                  word + "a", 
-                  word + "b", 
-                  word + "c"
-              )
+              suggestions
             )
           );
         }
